@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>Program Viewer</title>
+</head>
+<body>
+	<p>
+		<b>Team:</b> {{ row['team'] }}<br>
+		<b>Program:</b> {{ row['problem'] }}<br>
+		<b>Submitted</b> at {{ row['time'] }}<br>
+	</p>
+	<br>
+	Select all and then copy:
+	<pre>
+<textarea>{{ row['code'] }}</textarea>
+	</pre>
+</body>
+</html>
