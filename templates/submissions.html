@@ -15,6 +15,9 @@
 			<td style='width:150px;'>
 				<h2>Time</h2>
 			</td>
+			<td style='width:150px;'>
+				<h2>Architects</h2>
+			</td>
 		</tr>
 		{% for p in table %}
 			<tr>
@@ -25,7 +28,13 @@
 					<a target='_blank' href='{{ root + p['hash'] }}'>{{ p['problem'] }} (link)</a>
 				</td>
 				<td style='border-bottom: 1px solid black;'>
-					{{ p['time'] }}
+					{{ p['time'] }}&nbsp;&nbsp;&nbsp;
+					{% if p['resub'] %}
+						<span style='color:red;'>(Resubmitted)</span>
+					{% endif %}
+				</td>
+				<td style='border-bottom: 1px solid black;'>
+					{{ p['arch'] }}
 				</td>
 			</tr>
 		{% endfor %}

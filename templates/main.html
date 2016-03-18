@@ -9,13 +9,21 @@
 				<table>
 					<tr>
 						<td>
-							Team name:<input type='text' name='team_name' value='{{ team }}'/>
+							Team name: <input type='text' name='team_name' value='{{ team }}'/>
 						</td>
 						<td>
-							Problem:<input type='text' name='problem_name'/>
+							Problem: <input type='text' name='problem_name'/>
+						</td>
+						<td>
+							Resubmit? <input type='checkbox' name='resubmit'/>
 						</td>
 						<td>
 							<input type='submit'/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan='4'>
+							Architects<input type='text' name='architects' style='width:80%;'/>
 						</td>
 					</tr>
 				</table>
