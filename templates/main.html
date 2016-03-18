@@ -5,6 +5,9 @@
 <body style='background:#666;'>
 	<center>
 		<div style='background:#aaa;width:75%;height:100%;margin:20px;'>
+			{% if error %}
+			<h3><span style='color:red;'>Sorry, there was an error submitting your last program. You probably put unicode in it somewhere. If not, ask the judges.</span></h3>
+			{% endif %}
 			<form method="post" action="/submit">
 				<table>
 					<tr>

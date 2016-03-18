@@ -3,7 +3,7 @@ Computer science competition program submission server
 
 For a computer programming competition to simplify submitting programs.
 
-To run it, first fo=ind the IP address of the computer. then run the server:
+To run it, first find the IP address of the computer. then run the server:
 
 ```
 python main.py

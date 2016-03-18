@@ -1,3 +1,5 @@
+# coding: utf-8
+
 SECRET = 'ABCDEFGH' ## change this to an arbitrary random string to conceal the submissions page (if you want)
 DATABASE = 'data/data.db'
 
@@ -16,22 +18,25 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-	return render_template('main.html',team=request.args.get('t',''))
+	return render_template('main.html',team=request.args.get('t',''),error=request.args.get('e',''))
 
 @app.route('/submit',methods=['POST'])
 def submit():
-	print request.form
-	team = request.form.get('team_name','_error_')
-	problem = request.form.get('problem_name','_error_')
-	program = request.form.get('code','_error_')
-	resub = request.form.get('resubmit','_error_') == 'on'
-	arch = request.form.get('architects','_error_')
-	conn = sqlite3.connect(DATABASE)
-	c = conn.cursor()
-	c.execute('INSERT INTO programs VALUES (?,?,?,?,?,?,?)',(hashlib.md5(team+problem+program).hexdigest(),team,problem,program,time.time(),resub,arch))
-	conn.commit()
-	conn.close()
-	return redirect('/?t={}'.format(urllib.quote(team)),302)
+	try:
+		print request.form
+		team = request.form.get('team_name','_error_')
+		problem = request.form.get('problem_name','_error_')
+		program = request.form.get('code','_error_')
+		resub = request.form.get('resubmit','_error_') == 'on'
+		arch = request.form.get('architects','_error_')
+		conn = sqlite3.connect(DATABASE)
+		c = conn.cursor()
+		c.execute('INSERT INTO programs VALUES (?,?,?,?,?,?,?)',(hashlib.md5(team+problem+program).hexdigest(),team,problem,program,time.time(),resub,arch))
+		conn.commit()
+		conn.close()
+		return redirect('/?t={}'.format(urllib.quote(team)),302)
+	except:
+		return redirect('/?t={}&e=1'.format(urllib.quote(team)),302)
 
 @app.route('/view/'+SECRET+'/<cs>')
 def view(cs):
@@ -55,6 +60,6 @@ def submissions():
 	return render_template('submissions.html',table=table,root='/view/'+SECRET+'/')
 
 if __name__ == '__main__':
-	app.debug=True
+	#app.debug=True
 	print 'Submission list can be viewed at /view/{}'.format(SECRET)
 	app.run(host='0.0.0.0',port=5000)

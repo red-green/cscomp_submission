@@ -3,41 +3,45 @@
 	<title>Submissions list</title>
 	<meta http-equiv="refresh" content="10">
 </head>
-<body>
-	<table>
-		<tr>
-			<td style='width:150px;'>
-				<h2>Team</h2>
-			</td>
-			<td style='width:150px;'>
-				<h2>Program</h2>
-			</td>
-			<td style='width:150px;'>
-				<h2>Time</h2>
-			</td>
-			<td style='width:150px;'>
-				<h2>Architects</h2>
-			</td>
-		</tr>
-		{% for p in table %}
-			<tr>
-				<td style='border-bottom: 1px solid black;'>
-					{{ p['team'] }}
-				</td>
-				<td style='border-bottom: 1px solid black;'>
-					<a target='_blank' href='{{ root + p['hash'] }}'>{{ p['problem'] }} (link)</a>
-				</td>
-				<td style='border-bottom: 1px solid black;'>
-					{{ p['time'] }}&nbsp;&nbsp;&nbsp;
-					{% if p['resub'] %}
-						<span style='color:red;'>(Resubmitted)</span>
-					{% endif %}
-				</td>
-				<td style='border-bottom: 1px solid black;'>
-					{{ p['arch'] }}
-				</td>
-			</tr>
-		{% endfor %}
-	</table>
+<body style='background:#666;'>
+	<center>
+		<div style='background:#aaa;width:75%;height:100%;margin:20px;'>
+			<table>
+				<tr>
+					<td style='width:150px;'>
+						<h2>Team</h2>
+					</td>
+					<td style='width:150px;'>
+						<h2>Program</h2>
+					</td>
+					<td style='width:150px;'>
+						<h2>Time</h2>
+					</td>
+					<td style='width:150px;'>
+						<h2>Architects</h2>
+					</td>
+				</tr>
+				{% for p in table %}
+					<tr>
+						<td style='border-bottom: 1px solid black;'>
+							{{ p['team'] }}
+						</td>
+						<td style='border-bottom: 1px solid black;'>
+							<a target='_blank' href='{{ root + p['hash'] }}'>{{ p['problem'] }} (link)</a>
+						</td>
+						<td style='border-bottom: 1px solid black;'>
+							{{ p['time'] }}&nbsp;&nbsp;&nbsp;
+							{% if p['resub'] %}
+								<span style='color:red;'>(Resubmitted)</span>
+							{% endif %}
+						</td>
+						<td style='border-bottom: 1px solid black;'>
+							{{ p['arch'] }}
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</center>
 </body>
 </html>
